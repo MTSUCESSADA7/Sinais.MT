@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Padrões</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerador de Padrões</h1>
+    <table id="grid">
+        <!-- A tabela será gerada com 5x5 células -->
+        <!-- Cada célula inicialmente estará vazia -->
+        <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="gerarPadraoAleatorio()">Gerar Padrão Aleatório</button>
+    
+    <script>
+        // Função para gerar um padrão aleatório com 5 "X"
+        function gerarPadraoAleatorio() {
+            // Limpar todas as células
+            const cells = document.querySelectorAll("#grid td");
+            cells.forEach(cell => {
+                cell.textContent = "";
+            });
+
+            // Selecionar 5 células aleatórias e marcar com "X"
+            const shuffledCells = Array.from(cells).sort(() => Math.random() - 0.5);
+            for (let i = 0; i < 5; i++) {
+                shuffledCells[i].textContent = "X";
+            }
+        }
+
+        // Adicionar um evento de clique para marcar ou desmarcar células
+        document.querySelectorAll("#grid td").forEach(cell => {
+            cell.addEventListener("click", function() {
+                if (this.textContent === "") {
+                    this.textContent = "X";
+                } else {
+                    this.textContent = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
